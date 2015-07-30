@@ -692,8 +692,8 @@ Restart;
 
 #DEFINE RANGEDWEP_MAX 14
 #DEFINE RAPIDWEP_MAX 9
-#DEFINE CLOSEWEP_MAX 22
-#DEFINE POWERWEP_MAX 13
+#DEFINE CLOSEWEP_MAX 21
+#DEFINE POWERWEP_MAX 14
 #DEFINE SHIELDWEP_MAX 10
 
 // Set up weapon randomization for LMS/TLMS
@@ -728,7 +728,6 @@ str RapidWep[RAPIDWEP_MAX]={
 str CloseWep[CLOSEWEP_MAX]={
 "BubbleLeadWep",
 "WindStormWep",
-"CrystalEyeWep",
 "PowerStoneWep",
 "RingBoomerangWep",
 "RollingCutterWep",
@@ -762,7 +761,8 @@ str PowerWep[POWERWEP_MAX]={
 "BalladeCrackerWep",
 "FlashBombWep",
 "RemoteMineWep",
-"SpreadDrillWep"
+"SpreadDrillWep",
+"CrystalEyeWep"
 };
 str ShieldWep[SHIELDWEP_MAX]={
 "StarCrashWep",
@@ -819,11 +819,11 @@ if(GetCvar("lastmanstanding")==1||GetCvar("teamlms")==1){
 //
 
 int JunkRangedWep[2]={4, 9};
-int JunkCloseWep = 15;
+int JunkCloseWep = 14;
 
 int LeafRangedWep[2]={2, 12};
 int LeafRapidWep[3]={3, 4, 8};
-int LeafCloseWep[6]={5, 7, 9, 13, 16, 19};
+int LeafCloseWep[6]={4, 6, 8, 12, 14, 18};
 
 #DEFINE SHIELDROLL_LEAFSHIELD 1
 #DEFINE SHIELDROLL_JUNKSHIELD 5
