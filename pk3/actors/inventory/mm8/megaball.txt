@@ -1,0 +1,197 @@
+actor MegaBallWep : MegaBuster 11093
+{
+//$Category MM8BDM-Weapons
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 2
+Inventory.Pickupmessage "$PU_MEGABALL"
+Obituary "$OB_MEGABALL"
+weapon.ammotype "MegaBallAmmo"
+inventory.pickupsound "weapon/weaponup"
++WEAPON.AMMO_OPTIONAL
+inventory.icon "MEGABALI"
+Scale 2.0
+States
+{
+Spawn:
+WEA4 D 1
+loop
+Ready:
+MBAL N 0 ACS_ExecuteAlways(998,0,100)
+MBAL N 0 A_JumpIfInventory("KickedBall",1,"MegaBallKick")
+MBAL N 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+MBAL N 0 A_TakeInventory("BallFlag", 999)
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+MBAL N 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+MBAL N 1 A_Raise
+Loop
+Fire:
+MBAL N 0 A_JumpIfNoAmmo("NoAmmo")
+MBAL N 0 A_JumpIfInventory("BallFlag",1,"NewBall")
+MBAL N 0 A_GiveInventory("BallFlag",100)
+MBAL N 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+MBAL N 0 A_TakeInventory("MegaBallAmmo", 2)
+MBAL N 0 A_SpawnItemEx("MegaBall",48,8,32,0,0,0,0)
+MBAL NOP 3
+MBAL NNNNNNNNNNNNNNN 1 A_JumpIfInventory("KickedBall",1,"MegaBallKick")
+MBAL N 0 A_Refire
+Goto Ready+1
+MegaBallKick:
+MBAL Q 0 A_TakeInventory("KickedBall",1)
+MBAL Q 0 A_FireCustomMissile("MegaBallKicked",0,0,0,0)
+MBAL Q 0 A_TakeInventory("BallFlag",999)
+MBAL QQRRRQQQ 1
+MBAL N 15
+Goto Ready+1
+NewBall:
+MBAL N 0
+MBAL N 0 A_TakeInventory("BallFlag",100)
+MBAL NN 2
+Goto Fire+1
+NoAmmo:
+MBAL N 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor MegaBallAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
+}
+
+
+actor MegaBall
+{
+//$Category MM8BDM-Weapons
+PROJECTILE
+-NOGRAVITY
++NOBLOOD
++DONTSPLASH
++FIXMAPTHINGPOS
++FORCEXYBILLBOARD
+BounceType "Doom"
++NOEXPLODEFLOOR
+BounceFactor 0.5
+scale 2.5
+height 12
+radius 12
+speed 0
+damage (20)
+damagetype "MegaBall"
+Obituary "$OB_MEGABALL"
+States
+{
+Spawn:
+MBAL HGFEDC 2 A_JumpIf(z-floorz < 8, "Spawn2")
+Loop
+Spawn2:
+MBAL CC 1 A_JumpIfCloser(24, "KickOrSpring")
+MBAL C 0 A_TakeFromTarget("BallFlag", 1)
+MBAL C 0 A_JumpIfInTargetInventory("BallFlag", 1, "Spawn2")
+MBAL C 1 
+Goto Death
+KickOrSpring:
+MBAL C 0
+MBAL C 1 A_GiveToTarget("BallAction",1)
+Goto Death
+Death:
+MBAL C 0 A_Stop
+MBAL C 0 A_TakeFromTarget("BallFlag",999)
+MBAL C 1
+MMFX FGHI 1
+stop
+}
+}
+
+
+actor MegaBallKicked
+{
+PROJECTILE
++HEXENBOUNCE
+-NOGRAVITY
++FORCEXYBILLBOARD
++BOUNCEONACTORS
+scale 2.5
+height 16
+radius 16
+damage(30)
+bouncecount 10
+bouncefactor 0.9
+wallbouncefactor 0.9
+Gravity 0.50
+speed 40
+seesound "weapon/megaball"
+damagetype "MegaBall"
+Obituary "$OB_MEGABALL"
+States
+{
+Spawn:
+MBAL B 2
+MBAL B 0 ThrustThingZ(0, 20, 0, 1)
+MBAL BCDEFGHI 1 A_SpawnItemEx("MegaBallFX1")
+Goto Spawn+2
+Death:
+MMFX FGHI 2
+stop
+}
+}
+
+Actor KickedBall : Inventory
+{
+Inventory.Amount 1
+Inventory.maxamount 1
+}
+
+Actor BallFlag : Inventory
+{
+Inventory.Amount 1
+Inventory.maxamount 999
+}
+
+actor MegaBallFX1
+{
++NOINTERACTION
++FORCEXYBILLBOARD
++CLIENTSIDEONLY
+-SOLID
++NOGRAVITY
+RenderStyle "translucent"
+Alpha 0.70
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 2
+MBAL JKLM 3 A_FadeOut
+stop
+}
+}
+
+actor BallAction : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+States
+{
+Spawn:
+TNT1 A 1
+loop
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(z-floorz==0, "KickTheBall")
+TNT1 A 0 A_PlaySoundEx("weapon/megaball","Voice")
+TNT1 A 1 ThrustThingZ(0, 60, 0, 0)
+TNT1 A 1 A_TakeInventory("JumpCancler",1)
+stop
+KickTheBall:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("KickedBall", 1)
+stop
+}
+}

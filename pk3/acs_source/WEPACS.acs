@@ -691,9 +691,9 @@ Delay(4);
 Restart;
 }
 
-#DEFINE RANGEDWEP_MAX 14
+#DEFINE RANGEDWEP_MAX 15
 #DEFINE RAPIDWEP_MAX 9
-#DEFINE CLOSEWEP_MAX 21
+#DEFINE CLOSEWEP_MAX 20
 #DEFINE POWERWEP_MAX 14
 #DEFINE SHIELDWEP_MAX 10
 
@@ -713,7 +713,8 @@ str RangedWep[RANGEDWEP_MAX][3]={
 {"FreezeCrackerWep", "Freeze Cracker", "WEA3O0"},
 {"NoiseCrushWep", "Noise Crush", "WEA3J0"},
 {"SearchSnakeWep", "Search Snake", "WEAPK0"},
-{"IceWaveWep", "Ice Wave", "WEA4A0"}
+{"IceWaveWep", "Ice Wave", "WEA4A0"},
+{"MegaBallWep", "Mega Ball", "WEA4D0"}
 };
 str RapidWep[RAPIDWEP_MAX][3]={
 {"QuickBoomerangWep", "Quick Boomerang", "WEAPZ0"},
@@ -743,7 +744,6 @@ str CloseWep[CLOSEWEP_MAX][3]={
 {"TornadoHoldWep", "Tornado Hold", "WEA4C0"},
 {"ThunderClawWep", "Thunder Claw", "WEA4G0"},
 {"FlameSwordWep", "Flame Sword", "WEA4F0"},
-{"MegaBallWep", "Mega Ball", "WEA4D0"},
 {"OilSliderWep", "Oil Slider", "WEA7J0"},
 {"TenguBladeWep", "Tengu Blade", "TBLAX0"},
 {"MagicCardWep", "Magic Card", "MCARX0"},
@@ -824,7 +824,7 @@ int JunkCloseWep = 14;
 
 int LeafRangedWep[2]={2, 12};
 int LeafRapidWep[3]={3, 4, 8};
-int LeafCloseWep[6]={4, 6, 8, 12, 14, 18};
+int LeafCloseWep[6]={4, 6, 8, 12, 14, 17};
 
 #DEFINE SHIELDROLL_LEAFSHIELD 1
 #DEFINE SHIELDROLL_JUNKSHIELD 5
@@ -882,10 +882,14 @@ script 980 OPEN
 	}
 	
 	Delay(35);
+	int messagebase = 40;
+	
 	// [Lego] Weapon displays - Has to be done separately because five separate sets.
 	// woo
 	SetHudSize(600,380,0);
-	int messagebase = 40;
+	
+	// This is here to allow the messages to all fade out in sync.
+	// Simple math, I guess.
 	int max=StrLen(RangedWep[RangedWepRandom][1]);
 	if(max<StrLen(RapidWep[RapidWepRandom][1]))
 		max=StrLen(RapidWep[RapidWepRandom][1]);
@@ -896,7 +900,8 @@ script 980 OPEN
 	if(max<StrLen(ShieldWep[ShieldWepRandom][1]))
 		max=StrLen(ShieldWep[ShieldWepRandom][1]);
 	max = max*0.05 + 5.0;
-
+	
+	// Print icons
 	SetFont(RangedWep[RangedWepRandom][2]);
 	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 175.0, max-0.4, 0.4, 1.0);
 	SetFont(RapidWep[RapidWepRandom][2]);
@@ -908,6 +913,8 @@ script 980 OPEN
 	SetFont(ShieldWep[ShieldWepRandom][2]);
 	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 243.0, max-0.4, 0.4, 1.0);
 
+	// Print names woo
+	// This is actually the easy part
 	SetFont("smallfont");
 	HudMessageBold(s:RangedWep[RangedWepRandom][1]; HUDMSG_TYPEON, messagebase++,
 					CR_GREEN, 2.1, 159.0, max-(StrLen(RangedWep[RangedWepRandom][1])*0.05), 0.05, 1.0);
