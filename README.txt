@@ -16,6 +16,7 @@ the player experience in MM8BDM's TLMS mode.
 It's Better Team Last Man Standing...Hence the B.
 
 Changes from 8BDM core [as of v4c]:
+- Weapons do no randomize until the countdown phase, allowing people to see weapons.
 - Leaf Shield and Junk Shield receive counters when drawn.
 - Homing Sniper was moved to slot 4 [close] from slot 2 [ranged] due to it being
     more of a shotgun than a sniper.

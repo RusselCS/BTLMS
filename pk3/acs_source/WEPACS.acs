@@ -830,8 +830,17 @@ int LeafCloseWep[6]={5, 7, 9, 13, 16, 19};
 
 script 980 OPEN
 {
-	int weapChoice = -1;
+	// [Lego] Don't run the script unless T/LMS is active.
+	if(!GetCVar("teamlms") || !GetCVar("lastmanstanding"))terminate;
 	Delay(1);
+	
+	// [Lego] Don't reroll weapons until after the round is over.
+	while(GetGameModeState()==GAMESTATE_INPROGRESS)
+		{
+		Delay(1);
+		}
+	int weapChoice = -1;
+	
 	RangedWepRandom = Random(0,RANGEDWEP_MAX-1);
 	RapidWepRandom = Random(0,RAPIDWEP_MAX-1);
 	CloseWepRandom = Random(0,CLOSEWEP_MAX-1);
