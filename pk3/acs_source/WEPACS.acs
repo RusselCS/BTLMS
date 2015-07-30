@@ -699,83 +699,83 @@ Restart;
 
 // Set up weapon randomization for LMS/TLMS
 //
-str RangedWep[RANGEDWEP_MAX]={
-"BlizzardAttackWep",
-"SparkShockWep",
-"FireStormWep",
-"DustCrusherWep",
-"ThunderBeamWep",
-"GyroAttackWep",
-"SilverTomahawkWep",
-"MagnetMissileWep",
-"GeminiLaserWep",
-"ThunderBoltWep",
-"FreezeCrackerWep",
-"NoiseCrushWep",
-"SearchSnakeWep",
-"IceWaveWep"
+str RangedWep[RANGEDWEP_MAX][3]={
+{"BlizzardAttackWep", "Blizzard Attack", "WEAPW0"},
+{"SparkShockWep", "Spark Shock", "WEA2G0"},
+{"FireStormWep", "Fire Storm", "WEAPY0"},
+{"DustCrusherWep", "Dust Crusher", "WEA2K0"},
+{"ThunderBeamWep", "Thunder Beam", "WEAPR0"},
+{"GyroAttackWep", "Gyro Attack", "WEA2I0"},
+{"SilverTomahawkWep", "Silver Tomahawk", "WEA2U0"},
+{"MagnetMissileWep", "Magnet Missile", "WEAPI0"},
+{"GeminiLaserWep", "Gemini Laser", "WEAPM0"},
+{"ThunderBoltWep", "Thunder Bolt", "WEA3R0"},
+{"FreezeCrackerWep", "Freeze Cracker", "WEA3O0"},
+{"NoiseCrushWep", "Noise Crush", "WEA3J0"},
+{"SearchSnakeWep", "Search Snake", "WEAPK0"},
+{"IceWaveWep", "Ice Wave", "WEA4A0"}
 };
-str RapidWep[RAPIDWEP_MAX]={
-"QuickBoomerangWep",
-"IceSlasherWep",
-"WaterWaveWep",
-"MetalBladeWep",
-"ScrewCrusherWep",
-"YamatoSpearWep",
-"NeedleCannonWep",
-"WaterBalloonWep",
-"WaveBurnerWep"
+str RapidWep[RAPIDWEP_MAX][3]={
+{"QuickBoomerangWep", "Quick Boomerang", "WEAPZ0"},
+{"IceSlasherWep", "Ice Slasher", "WEAPP0"},
+{"WaterWaveWep", "Water Wave", "WEA2M0"},
+{"MetalBladeWep", "Metal Blade", "WEAPS0"},
+{"ScrewCrusherWep", "Screw Crusher", "WEA3D0"},
+{"YamatoSpearWep", "Yamato Spear", "WEA2R0"},
+{"NeedleCannonWep", "Needle Cannon", "WEAPL0"},
+{"WaterBalloonWep", "Water Balloon", "WEA4I0"},
+{"WaveBurnerWep", "Wave Burner", "WABUX0"}
 };
-str CloseWep[CLOSEWEP_MAX]={
-"BubbleLeadWep",
-"WindStormWep",
-"PowerStoneWep",
-"RingBoomerangWep",
-"RollingCutterWep",
-"ChargeKickWep",
-"FlameBlastWep",
-"WildCoilWep",
-"ShadowBladeWep",
-"KnightCrushWep",
-"TopSpinWep",
-"AirShooterWep",
-"SlashClawWep",
-"TornadoHoldWep",
-"ThunderClawWep",
-"FlameSwordWep",
-"MegaBallWep",
-"OilSliderWep",
-"TenguBladeWep",
-"MagicCardWep",
-"HomingSniperWep"
+str CloseWep[CLOSEWEP_MAX][3]={
+{"BubbleLeadWep", "Bubble Lead", "WEAPD0"},
+{"WindStormWep", "Wind Storm", "WEA2V0"},
+{"PowerStoneWep", "Power Stone", "WEA2J0"},
+{"RingBoomerangWep", "Ring Boomerang", "WEA2H0"},
+{"RollingCutterWep", "Rolling Cutter", "WEA2F0"},
+{"ChargeKickWep", "Charge Kick", "WEA2E0"},
+{"FlameBlastWep", "Flame Blast", "WEA2P0"},
+{"WildCoilWep", "Wild Coil", "WEA3K0"},
+{"ShadowBladeWep", "Shadow Blade", "WEAPA0"},
+{"KnightCrushWep", "Knight Crush", "WEA2W0"},
+{"TopSpinWep", "Top Spin", "WEAPJ0"},
+{"AirShooterWep", "Air Shooter", "WEAPG0"},
+{"SlashClawWep", "Slash Claw", "WEA3Q0"},
+{"TornadoHoldWep", "Tornado Hold", "WEA4C0"},
+{"ThunderClawWep", "Thunder Claw", "WEA4G0"},
+{"FlameSwordWep", "Flame Sword", "WEA4F0"},
+{"MegaBallWep", "Mega Ball", "WEA4D0"},
+{"OilSliderWep", "Oil Slider", "WEA7J0"},
+{"TenguBladeWep", "Tengu Blade", "TBLAX0"},
+{"MagicCardWep", "Magic Card", "MCARX0"},
+{"HomingSniperWep", "Homing Sniper", "WEA4H0"}
 };
-str PowerWep[POWERWEP_MAX]={
-"PharaohShotWep",
-"SuperArmWep",
-"AtomicFireWep",
-"HardKnuckleWep",
-"CrashBombWep",
-"NapalmBombWep",
-"HyperBombWep",
-"DangerWrapWep",
-"DrillBombWep",
-"BalladeCrackerWep",
-"FlashBombWep",
-"RemoteMineWep",
-"SpreadDrillWep",
-"CrystalEyeWep"
+str PowerWep[POWERWEP_MAX][3]={
+{"PharaohShotWep", "DARK HADOU", "WEA2L0"},
+{"SuperArmWep", "Super Arm", "WEAPO0"},
+{"AtomicFireWep", "DO IT", "WEAPE0"},
+{"HardKnuckleWep", "Hard Knuckle", "WEAPT0"},
+{"CrashBombWep", "Crash Bomb", "WEA2C0"},
+{"NapalmBombWep", "Napalm Bomb", "WEAPC0"},
+{"HyperBombWep", "Hyper Bomb", "WEAPH0"},
+{"DangerWrapWep", "Danger Wrap", "WEA3L0"},
+{"DrillBombWep", "Drill Bomb", "WEAPV0"},
+{"BalladeCrackerWep", "Ballade Cracker", "WEA3C0"},
+{"FlashBombWep", "Flash Bomb", "WEA4B0"},
+{"RemoteMineWep", "Remote Mine", "REMIX0"},
+{"SpreadDrillWep", "Spread Drill", "SPREX0"},
+{"CrystalEyeWep", "Crystal Eye", "WEA2N0"}
 };
-str ShieldWep[SHIELDWEP_MAX]={
-"StarCrashWep",
-"LeafShieldWep",
-"MirrorBusterWep",
-"PlantBarrierWep",
-"SkullbarrierWep",
-"JunkShieldWep",
-"ScorchWheelWep",
-"SakuGarneWep",
-"IceWallWep",
-"CopyVisionWep"
+str ShieldWep[SHIELDWEP_MAX][3]={
+{"StarCrashWep", "Star Crash", "WEA2X0"},
+{"LeafShieldWep", "Leaf Shield", "WEAPF0"},
+{"MirrorBusterWep", "Mirror Buster", "WEA3H0"},
+{"PlantBarrierWep", "Plant Barrier", "WEA2T0"},
+{"SkullbarrierWep", "Skull Barrier", "WEA2O0"},
+{"JunkShieldWep", "Junk Shield", "WEA3N0"},
+{"ScorchWheelWep", "Scorch Wheel", "WEA3M0"},
+{"SakuGarneWep", "Sakugarne", "WEA2Z0"},
+{"IceWallWep", "Ice Wall", "ICWLX0"},
+{"CopyVisionWep", "Copy Vision", "COPYX0"}
 };
 
 global int 0:RangedWepRandom;
@@ -801,11 +801,11 @@ if(GetCvar("lastmanstanding")==1||GetCvar("teamlms")==1){
 	}
 	
 	// Give players one of each weapon type at random
-	GiveInventory(ShieldWep[ShieldWepRandom],1);
-	GiveInventory(RapidWep[RapidWepRandom],1);
-	GiveInventory(CloseWep[CloseWepRandom],1);
-	GiveInventory(PowerWep[PowerWepRandom],1);
-	GiveInventory(RangedWep[RangedWepRandom],1);
+	GiveInventory(ShieldWep[ShieldWepRandom][0],1);
+	GiveInventory(RapidWep[RapidWepRandom][0],1);
+	GiveInventory(CloseWep[CloseWepRandom][0],1);
+	GiveInventory(PowerWep[PowerWepRandom][0],1);
+	GiveInventory(RangedWep[RangedWepRandom][0],1);
 	
 	Delay(1);
 	
@@ -832,14 +832,13 @@ int LeafCloseWep[6]={4, 6, 8, 12, 14, 18};
 script 980 OPEN
 {
 	// [Lego] Don't run the script unless T/LMS is active.
-	if(!GetCVar("teamlms") || !GetCVar("lastmanstanding"))terminate;
+	if(!GetCVar("teamlms") && !GetCVar("lastmanstanding"))terminate;
 	Delay(1);
 	
 	// [Lego] Don't reroll weapons until after the round is over.
-	while(GetGameModeState()==GAMESTATE_INPROGRESS)
-		{
+	while(GetGameModeState()!=GAMESTATE_COUNTDOWN)
 		Delay(1);
-		}
+
 	int weapChoice = -1;
 	
 	RangedWepRandom = Random(0,RANGEDWEP_MAX-1);
@@ -881,6 +880,45 @@ script 980 OPEN
 			PowerWepRandom = 0;
 		}
 	}
+	
+	Delay(35);
+	// [Lego] Weapon displays - Has to be done separately because five separate sets.
+	// woo
+	SetHudSize(600,380,0);
+	int messagebase = 40;
+	int max=StrLen(RangedWep[RangedWepRandom][1]);
+	if(max<StrLen(RapidWep[RapidWepRandom][1]))
+		max=StrLen(RapidWep[RapidWepRandom][1]);
+	if(max<StrLen(CloseWep[CloseWepRandom][1]))
+		max=StrLen(CloseWep[CloseWepRandom][1]);
+	if(max<StrLen(PowerWep[PowerWepRandom][1]))
+		max=StrLen(PowerWep[PowerWepRandom][1]);
+	if(max<StrLen(ShieldWep[ShieldWepRandom][1]))
+		max=StrLen(ShieldWep[ShieldWepRandom][1]);
+	max = max*0.05 + 5.0;
+
+	SetFont(RangedWep[RangedWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 175.0, max-0.4, 0.4, 1.0);
+	SetFont(RapidWep[RapidWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 192.0, max-0.4, 0.4, 1.0);
+	SetFont(CloseWep[CloseWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 209.0, max-0.4, 0.4, 1.0);
+	SetFont(PowerWep[PowerWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 226.0, max-0.4, 0.4, 1.0);		
+	SetFont(ShieldWep[ShieldWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 243.0, max-0.4, 0.4, 1.0);
+
+	SetFont("smallfont");
+	HudMessageBold(s:RangedWep[RangedWepRandom][1]; HUDMSG_TYPEON, messagebase++,
+					CR_GREEN, 2.1, 159.0, max-(StrLen(RangedWep[RangedWepRandom][1])*0.05), 0.05, 1.0);
+	HudMessageBold(s:RapidWep[RapidWepRandom][1]; HUDMSG_TYPEON, messagebase++,
+					CR_GREEN, 2.1, 176.0, max-(StrLen(RapidWep[RapidWepRandom][1])*0.05), 0.05, 1.0);
+	HudMessageBold(s:CloseWep[CloseWepRandom][1]; HUDMSG_TYPEON, messagebase++,
+					CR_GREEN, 2.1, 193.0, max-(StrLen(CloseWep[CloseWepRandom][1])*0.05), 0.05, 1.0);
+	HudMessageBold(s:PowerWep[PowerWepRandom][1]; HUDMSG_TYPEON, messagebase++,
+					CR_GREEN, 2.1, 211.0, max-(StrLen(PowerWep[PowerWepRandom][1])*0.05), 0.05, 1.0);
+	HudMessageBold(s:ShieldWep[ShieldWepRandom][1]; HUDMSG_TYPEON, messagebase++,
+					CR_GREEN, 2.1, 228.0, max-(StrLen(ShieldWep[ShieldWepRandom][1])*0.05), 0.05, 1.0);
 }
 
 // Script that is executed everytime a weapon's NoAmmo state is called.
