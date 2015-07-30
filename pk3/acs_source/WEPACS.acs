@@ -888,7 +888,7 @@ script 980 OPEN
 	// woo
 	SetHudSize(600,380,0);
 	
-	// This is here to allow the messages to all fade out in sync.
+	// This is here to allow the messages to all fade out in near-sync.
 	// Simple math, I guess.
 	int max=StrLen(RangedWep[RangedWepRandom][1]);
 	if(max<StrLen(RapidWep[RapidWepRandom][1]))
@@ -902,29 +902,38 @@ script 980 OPEN
 	int time = GetCVar("sv_lmscountdowntime")<<16;
 	max = max*0.05 + time + 2.0;
 	
-	// Print icons
+	// Print weapon list
 	SetFont(RangedWep[RangedWepRandom][2]);
 	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 175.0, max-0.4, 0.4, 1.0);
-	SetFont(RapidWep[RapidWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 192.0, max-0.4, 0.4, 1.0);
-	SetFont(CloseWep[CloseWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 209.0, max-0.4, 0.4, 1.0);
-	SetFont(PowerWep[PowerWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 226.0, max-0.4, 0.4, 1.0);		
-	SetFont(ShieldWep[ShieldWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 243.0, max-0.4, 0.4, 1.0);
-
-	// Print names woo
-	// This is actually the easy part
 	SetFont("smallfont");
 	HudMessageBold(s:RangedWep[RangedWepRandom][1]; HUDMSG_TYPEON, messagebase++,
 					CR_GREEN, 2.1, 159.0, max-(StrLen(RangedWep[RangedWepRandom][1])*0.05), 0.05, 1.0);
+
+	Delay(8);
+	SetFont(RapidWep[RapidWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 192.0, max-0.4, 0.4, 1.0);
+	SetFont("smallfont");
 	HudMessageBold(s:RapidWep[RapidWepRandom][1]; HUDMSG_TYPEON, messagebase++,
 					CR_GREEN, 2.1, 176.0, max-(StrLen(RapidWep[RapidWepRandom][1])*0.05), 0.05, 1.0);
+
+	Delay(8);
+	SetFont(CloseWep[CloseWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 209.0, max-0.4, 0.4, 1.0);
+	SetFont("smallfont");
 	HudMessageBold(s:CloseWep[CloseWepRandom][1]; HUDMSG_TYPEON, messagebase++,
 					CR_GREEN, 2.1, 193.0, max-(StrLen(CloseWep[CloseWepRandom][1])*0.05), 0.05, 1.0);
+
+	Delay(8);
+	SetFont(PowerWep[PowerWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 226.0, max-0.4, 0.4, 1.0);
+	SetFont("smallfont");
 	HudMessageBold(s:PowerWep[PowerWepRandom][1]; HUDMSG_TYPEON, messagebase++,
 					CR_GREEN, 2.1, 211.0, max-(StrLen(PowerWep[PowerWepRandom][1])*0.05), 0.05, 1.0);
+
+	Delay(8);
+	SetFont(ShieldWep[ShieldWepRandom][2]);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 243.0, max-0.4, 0.4, 1.0);
+	SetFont("smallfont");
 	HudMessageBold(s:ShieldWep[ShieldWepRandom][1]; HUDMSG_TYPEON, messagebase++,
 					CR_GREEN, 2.1, 228.0, max-(StrLen(ShieldWep[ShieldWepRandom][1])*0.05), 0.05, 1.0);
 }
