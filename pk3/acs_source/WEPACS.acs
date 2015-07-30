@@ -358,6 +358,7 @@ If(IsATeamGame==1) //If this is a team game, set team colors and don't use weapo
 	Switch(PlayerTeam())
 		{
 		Case 0:
+		Thing_SetTranslation(0, 0);
 		break;
 		Case 1:
 		Thing_SetTranslation(0, 48);
