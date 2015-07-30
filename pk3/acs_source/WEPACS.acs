@@ -824,7 +824,7 @@ int JunkCloseWep = 14;
 
 int LeafRangedWep[2]={2, 12};
 int LeafRapidWep[3]={3, 4, 8};
-int LeafCloseWep[6]={4, 6, 8, 12, 14, 17};
+int LeafCloseWep[6]={4, 6, 8, 12, 15, 17};
 
 #DEFINE SHIELDROLL_LEAFSHIELD 1
 #DEFINE SHIELDROLL_JUNKSHIELD 5
