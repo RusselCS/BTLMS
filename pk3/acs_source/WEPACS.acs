@@ -1148,11 +1148,14 @@ script 250 (void) NET CLIENTSIDE
 {
 Log(s:"B-TLMS makes minor adjustments to core gameplay to enhance player experience.\n",
 s:"Here is a list of the changes it makes:\n",
+s:"- Weapons are randomized on countdown only, allowing sets to transfer to post intermission.\n",
+s:"- Weapon sets are shown to the left of the screen when they're drawn.\n",
 s:"- When Junk Shield or Leaf Shield are drawn, all players will also gain a counter to the respective shield.\n",
 s:"     For example, Leaf Shield being drawn will give all players a fire weapon, for Junk, an electric weapon.\n",
 s:"- Dive Missile is no longer in the weapon rotation.\n",
 s:"- Homing Sniper moved to the \"close\" weapon category in weapon draws. Its slot remains the same, however.\n",
 s:"- Homing Sniper no longer has hitstun targets.\n",
 s:"- Thunder Beam can no longer one-shot. [Ported from KD's duel patch]\n",
-s:"- Plant Barrier users take more damage while using it. [Ported from KD's duel patch]");
+s:"- Plant Barrier users take more damage while using it. [Ported from KD's duel patch]\n",
+s:"- Alien has a landing sound. [Ported from KD's duel patch]");
 }
