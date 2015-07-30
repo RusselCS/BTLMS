@@ -899,7 +899,8 @@ script 980 OPEN
 		max=StrLen(PowerWep[PowerWepRandom][1]);
 	if(max<StrLen(ShieldWep[ShieldWepRandom][1]))
 		max=StrLen(ShieldWep[ShieldWepRandom][1]);
-	max = max*0.05 + 5.0;
+	int time = GetCVar("sv_lmscountdowntime")<<16;
+	max = max*0.05 + time + 2.0;
 	
 	// Print icons
 	SetFont(RangedWep[RangedWepRandom][2]);
