@@ -750,9 +750,9 @@ str CloseWep[CLOSEWEP_MAX][3]={
 {"HomingSniperWep", "Homing Sniper", "WEA4H0"}
 };
 str PowerWep[POWERWEP_MAX][3]={
-{"PharaohShotWep", "DARK HADOU", "WEA2L0"},
+{"PharaohShotWep", "Pharaoh Shot", "WEA2L0"},
 {"SuperArmWep", "Super Arm", "WEAPO0"},
-{"AtomicFireWep", "DO IT", "WEAPE0"},
+{"AtomicFireWep", "Atomic Fire", "WEAPE0"},
 {"HardKnuckleWep", "Hard Knuckle", "WEAPT0"},
 {"CrashBombWep", "Crash Bomb", "WEA2C0"},
 {"NapalmBombWep", "Napalm Bomb", "WEAPC0"},
@@ -996,9 +996,6 @@ if(speed==3){
 SetActorProperty(0,APROP_SPEED,1.25);
 SetActorProperty(0,APROP_JUMPZ,13.0);
 }
-
-
-
 }
 
 //CMM
