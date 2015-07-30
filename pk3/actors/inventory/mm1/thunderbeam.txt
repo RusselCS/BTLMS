@@ -1,0 +1,72 @@
+actor ThunderBeamWep : MegaBuster 10047
+{
+//$Category MM8BDM-Weapons
+Weapon.AmmoUse 1
+Weapon.AmmoGive 28
+Weapon.SlotNumber 2
+Inventory.Pickupmessage "$PU_THUNDERBEAM"
+Obituary "$OB_THUNDERBEAM"
+weapon.ammotype "ThunderBeamAmmo"
+inventory.pickupsound "weapon/weaponup"
++WEAPON.AMMO_OPTIONAL
+inventory.icon "THUNSI"
+Scale 2.0
+States
+{
+Spawn:
+WEAP R 1
+loop
+Ready:
+THUN H 0 ACS_ExecuteAlways(998,0,16)
+THUN H 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+THUN H 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+THUN H 1 A_Raise
+Loop
+Fire:
+THUN H 0 A_JumpIfNoAmmo("NoAmmo")
+THUN H 0 A_PlaySoundEx("weapon/thunderbeam","Weapon")
+THUN H 0 A_SpawnItemEx("ThunderBeam",0,8,32,cos(pitch)*30,0,sin(-pitch)*30,0)
+THUN H 0 A_SpawnItemEx("ThunderBeam",cos(pitch)*8,0,32,cos(pitch)*30,0,sin(-pitch)*30,-90)
+THUN H 0 A_SpawnItemEx("ThunderBeam",cos(pitch)*-8,0,32,cos(pitch)*30,0,sin(-pitch)*30,90)
+THUN H 0 A_TakeInventory("ThunderBeamAmmo",1)
+THUN IJ 5
+THUN H 14
+THUN H 0 A_Refire
+Goto Ready+1
+NoAmmo:
+THUN H 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor ThunderBeamAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
+}
+
+actor ThunderBeam
+{
+PROJECTILE
+damagetype "ThunderBeam"
+Obituary "$OB_THUNDERBEAM"
+scale 2.5
++RIPPER
++PIERCEARMOR
+Speed 30
+Radius 12
+Height 6
+Damage (15)
+States
+{
+Spawn:
+THUN ABCDEFG 3
+loop
+}
+}
