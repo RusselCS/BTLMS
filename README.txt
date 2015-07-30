@@ -22,6 +22,7 @@ Changes from 8BDM core [as of v4c]:
 - Dive Missile was completely removed from the weapon rotation.
 - Thunder Beam can no longer one-shot, this was ported from KD's duel patch.
 - Plant Barrier users take more damage with the shield up, also taken from KD's duel patch.
+- Alien skin now has a landing sound, taken from the duel patch.
 
 That's...pretty much it. This patch doesn't do much, but the project's goal is to enhance player experience.
 Thanks for reading, I guess.
