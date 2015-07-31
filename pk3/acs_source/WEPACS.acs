@@ -793,6 +793,9 @@ if(GetCvar("lastmanstanding")==1||GetCvar("teamlms")==1){
 	// Ignore if game is set to instagib
 	if(GetCvar("instagib")==1){terminate;}
 	
+	while(GetGameModeState()!=GAMESTATE_COUNTDOWN && GetGameModeState()!=GAMESTATE_INPROGRESS)
+		Delay(1);
+	
 	Delay(5);
 	
 	// Take bots Mega Buster so they actually use a different weapon (limited to ranged weapon at present)
