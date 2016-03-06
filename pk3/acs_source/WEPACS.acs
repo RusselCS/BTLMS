@@ -788,10 +788,10 @@ global int 4:ShieldWepRandom;
 //
 script 981 (void)
 {
+if(GetCvar("instagib")==1){terminate;}
 // Check if the game is actually LMS
 if(GetCvar("lastmanstanding")==1||GetCvar("teamlms")==1){
 	// Ignore if game is set to instagib
-	if(GetCvar("instagib")==1){terminate;}
 	
 	while(GetGameModeState()!=GAMESTATE_COUNTDOWN && GetGameModeState()!=GAMESTATE_INPROGRESS)
 		Delay(1);
@@ -906,39 +906,43 @@ script 980 OPEN
 	max = max*0.05 + time + 2.0;
 	
 	// Print weapon list
+	
+	int offsetX1 = 32.0;
+	int offsetX2 = 34.1;
+	
 	SetFont(RangedWep[RangedWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 175.0, max-0.4, 0.4, 1.0);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, offsetX1, 175.0, max-0.4, 0.4, 1.0);
 	SetFont("smallfont");
 	HudMessageBold(s:RangedWep[RangedWepRandom][1]; HUDMSG_TYPEON, messagebase++,
-					CR_GREEN, 2.1, 159.0, max-(StrLen(RangedWep[RangedWepRandom][1])*0.05), 0.05, 1.0);
+					CR_GREEN, offsetX2, 159.0, max-(StrLen(RangedWep[RangedWepRandom][1])*0.05), 0.05, 1.0);
 
 	Delay(8);
 	SetFont(RapidWep[RapidWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 192.0, max-0.4, 0.4, 1.0);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, offsetX1, 192.0, max-0.4, 0.4, 1.0);
 	SetFont("smallfont");
 	HudMessageBold(s:RapidWep[RapidWepRandom][1]; HUDMSG_TYPEON, messagebase++,
-					CR_GREEN, 2.1, 176.0, max-(StrLen(RapidWep[RapidWepRandom][1])*0.05), 0.05, 1.0);
+					CR_GREEN, offsetX2, 176.0, max-(StrLen(RapidWep[RapidWepRandom][1])*0.05), 0.05, 1.0);
 
 	Delay(8);
 	SetFont(CloseWep[CloseWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 209.0, max-0.4, 0.4, 1.0);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, offsetX1, 209.0, max-0.4, 0.4, 1.0);
 	SetFont("smallfont");
 	HudMessageBold(s:CloseWep[CloseWepRandom][1]; HUDMSG_TYPEON, messagebase++,
-					CR_GREEN, 2.1, 193.0, max-(StrLen(CloseWep[CloseWepRandom][1])*0.05), 0.05, 1.0);
+					CR_GREEN, offsetX2, 193.0, max-(StrLen(CloseWep[CloseWepRandom][1])*0.05), 0.05, 1.0);
 
 	Delay(8);
 	SetFont(PowerWep[PowerWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 226.0, max-0.4, 0.4, 1.0);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, offsetX1, 226.0, max-0.4, 0.4, 1.0);
 	SetFont("smallfont");
 	HudMessageBold(s:PowerWep[PowerWepRandom][1]; HUDMSG_TYPEON, messagebase++,
-					CR_GREEN, 2.1, 211.0, max-(StrLen(PowerWep[PowerWepRandom][1])*0.05), 0.05, 1.0);
+					CR_GREEN, offsetX2, 211.0, max-(StrLen(PowerWep[PowerWepRandom][1])*0.05), 0.05, 1.0);
 
 	Delay(8);
 	SetFont(ShieldWep[ShieldWepRandom][2]);
-	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, 0.0, 243.0, max-0.4, 0.4, 1.0);
+	HudMessageBold(s:"A"; HUDMSG_FADEINOUT, messagebase++, CR_GREEN, offsetX1, 243.0, max-0.4, 0.4, 1.0);
 	SetFont("smallfont");
 	HudMessageBold(s:ShieldWep[ShieldWepRandom][1]; HUDMSG_TYPEON, messagebase++,
-					CR_GREEN, 2.1, 228.0, max-(StrLen(ShieldWep[ShieldWepRandom][1])*0.05), 0.05, 1.0);
+					CR_GREEN, offsetX2, 228.0, max-(StrLen(ShieldWep[ShieldWepRandom][1])*0.05), 0.05, 1.0);
 }
 
 // Script that is executed everytime a weapon's NoAmmo state is called.
@@ -1164,8 +1168,14 @@ s:"- When Junk Shield or Leaf Shield are drawn, all players will also gain a cou
 s:"     For example, Leaf Shield being drawn will give all players a fire weapon, for Junk, an electric weapon.\n",
 s:"- Dive Missile is no longer in the weapon rotation.\n",
 s:"- Homing Sniper moved to the \"close\" weapon category in weapon draws. Its slot remains the same, however.\n",
-s:"- Homing Sniper no longer has hitstun targets.\n",
+s:"- Homing Sniper can no longer hitstun targets.\n",
 s:"- Thunder Beam can no longer one-shot. [Ported from KD's duel patch]\n",
 s:"- Plant Barrier users take more damage while using it. [Ported from KD's duel patch]\n",
-s:"- Alien has a landing sound. [Ported from KD's duel patch]");
+s:"- Alien has a landing sound. [Ported from KD's duel patch]\n",
+s:"- Mirror Buster no longer produces a railgun when impacted by Search Snake.\n",
+s:"- Skull Barrier now takes all ammo upon disabling.\n",
+s:"\n",
+s:"Map specific changes:\n",
+s:"[MM4BRI] 100 Watton no longer spawns.\n",
+s:"");
 }
