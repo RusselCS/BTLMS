@@ -1,3 +1,7 @@
+*.o
+*_acslist.txt
+*.pk3
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
