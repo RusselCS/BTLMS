@@ -1,0 +1,50 @@
+
+#define MAX_DECK 1000
+int countNumbers = 0;
+int maxNumbers[MAX_DECK];
+
+function int getDrawnNumber(int idx) {
+	return maxNumbers[idx];
+}
+
+function void setTopNumber(int val) {
+	maxNumbers[countNumbers++] = val;
+}
+
+function int drawNumber(int min, int max) {
+	int fail = min-1;
+
+	if(countNumbers >= MAX_DECK)
+		return fail;
+	
+	int i;
+	for(i = min; i <= max; i++)
+		if(!isNumDrawn(i))
+			break;
+	
+	if(i == max-min)
+		return fail;
+	
+	int ret;
+	do
+		ret = random(min, max);
+	while(isNumDrawn(ret));
+	
+	setTopNumber(ret);
+	return ret;
+}
+
+function bool isNumDrawn(int num) {
+	for(int i = 0; i < countNumbers; i++)
+		if(getDrawnNumber(i) == num)
+			return true;
+	
+	return false;
+}
+
+function int max(int x, int y)
+{
+	if(x > y)
+		return x;
+	return y;
+}

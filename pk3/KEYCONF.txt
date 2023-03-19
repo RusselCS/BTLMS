@@ -1,0 +1,1 @@
+alias SetScorchedEarth "BTLMS_SpawnMapWeapons = true; BTLMS_SpawnSmallHP false; BTLMS_SpawnBigHP true; BTLMS_SpawnSmallWE true; BTLMS_SpawnBigWE true; BTLMS_SpawnMegaHP true; BTLMS_SpawnMegaWE true; BTLMS_SpawnItems true; BTLMS_UseItemReplacements true; BTLMS_StartWithMapWeapons = false;"

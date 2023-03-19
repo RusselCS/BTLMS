@@ -1,0 +1,21 @@
+actor WasInvulnerable : Once {}
+
+actor LMSRepulsion : ArtiBlastRadius
+{
++INVENTORY.AUTOACTIVATE
+}
+
+actor BTLMSTeleportFogNormal : TeleportFogNormal replaces TeleportFogNormal
+{
+	+DONTBLAST
+}
+
+actor BTLMSTeleportFogFancy : TeleportFogFancy replaces TeleportFogFancy
+{
+	+DONTBLAST
+}
+
+actor BTLMSItemFog : ItemFog2 replaces ItemFog2
+{
+	+DONTBLAST
+}

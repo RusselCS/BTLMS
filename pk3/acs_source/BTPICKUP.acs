@@ -1,0 +1,252 @@
+#library "BTPICKUP"
+
+#include "zcommon.acs"
+#include "BTCONST.acs"
+
+// Pickup list!
+// 0 - Name
+// 1 - Cvar Toggle
+// 2 - Replace Item
+//
+str pickupStrings[MAX_PICKUPS][3] = {
+	{"SmallHealth", "BTLMS_SpawnSmallHP", "SmallHealth"},
+	{"BigHealth", "BTLMS_SpawnBigHP", "BigHealth"},
+	{"WeaponEnergy", "BTLMS_SpawnSmallWE", "WeaponEnergy"},
+	{"BigWeaponEnergy", "BTLMS_SpawnBigWE", "BigWeaponEnergy"},
+	{"MegaHealth", "BTLMS_SpawnMegaHP", "MegaHealth"},
+	{"MegaWeaponEnergy", "BTLMS_SpawnMegaWE", "MegaWeaponEnergy"},
+	
+	{"BeatBoostItem", "BTLMS_SpawnItems", "BeatBoostItem"},
+	{"EddieSummon", "BTLMS_SpawnItems", "EddieSummon"},
+	{"Item1", "BTLMS_SpawnItems", "Item1"},
+	{"Item2", "BTLMS_SpawnItems", "Item2"},
+	{"Item3", "BTLMS_SpawnItems", "Item3"},
+	{"ExitUnitItem", "BTLMS_SpawnItems", "ExitUnitItem"},
+	{"RushCoil", "BTLMS_SpawnItems", "RushCoil"},
+	{"RushJet", "BTLMS_SpawnItems", "RushJet"},
+	{"RushMarine", "BTLMS_SpawnItems", "RushMarine"},
+	{"WireAdaptor", "BTLMS_SpawnItems", "WireAdaptor"},
+	
+	{"BeatSupport", "BTLMS_SpawnItems", "BeatSupport"},
+	{"EddieBomber", "BTLMS_SpawnItems", "EddieBomber"},
+	{"ReggaeCall", "BTLMS_SpawnItems", "ReggaeCall"},
+	{"TangoSummon", "BTLMS_SpawnItems", "TangoSummon"},
+	{"TrebleSentry", "BTLMS_SpawnItems", "TrebleSentry"},
+	
+	{"BassUpgrade", "BTLMS_SpawnItems", "BassUpgrade"},
+	{"ProtoUpgrade", "BTLMS_SpawnItems", "ProtoUpgrade"},
+	{"AdaptorUpgrade", "BTLMS_SpawnItems", "AdaptorUpgrade"},
+	{"LaserBusterUpgrade", "BTLMS_SpawnItems", "LaserBusterUpgrade"},
+	{"ArrowBusterUpgrade", "BTLMS_SpawnItems", "ArrowBusterUpgrade"},
+	{"DuoFistUpgrade", "BTLMS_SpawnItems", "DuoFistUpgrade"},
+	{"TrebleBoostUpgrade", "BTLMS_SpawnItems", "TrebleBoostUpgrade"},
+	{"MegaArmUpgrade", "BTLMS_SpawnItems", "MegaArmUpgrade"},
+	
+	{"ETank", "BTLMS_SpawnItems", "BigHealth"},
+	{"WTank", "BTLMS_SpawnItems", "WTank"},
+	{"MTank", "BTLMS_SpawnItems", "MegaHealth"},
+	
+	{"EnergyBalancer", "BTLMS_SpawnItems", "EnergyBalancer"}
+};
+
+// Pickup properties
+// 0 - Respawn time
+// 1 - Sprite height 
+// 2 - Translation ID
+//
+int pickupNums[MAX_PICKUPS][3] = {
+	{1050,  4.0, CLR_HEALTH}, // "SmallHealth"
+	{1050,  8.0, CLR_HEALTH}, // "BigHealth"
+	{1050,  4.0, CLR_COPY},   // "WeaponEnergy"
+	{1050,  6.0, CLR_COPY},   // "BigWeaponEnergy"
+	{1050, 14.0, CLR_HEALTH}, // "MegaHealth"
+	{1050, 15.0, CLR_COPY},   // "MegaWeaponEnergy"
+
+	{ 245,  8.0, CLR_NONE},   // "BeatBoostItem"
+	{1050,  8.0, CLR_RUSH},   // "EddieSummon"
+	{ 210,  8.0, CLR_RUSH},   // "Item1"
+	{ 210,  8.0, CLR_RUSH},   // "Item2"
+	{ 210,  8.0, CLR_RUSH},   // "Item3"
+	{1050,  8.0, CLR_EXIT},   // "ExitUnitItem"
+	{ 245,  8.0, CLR_RUSH},   // "RushCoil"
+	{ 525,  8.0, CLR_RUSH},   // "RushJet"
+	{ 525,  8.0, CLR_RUSH},   // "RushMarine"
+	{ 245,  8.0, CLR_RUSH},   // "WireAdaptor"
+
+	{1050,  8.0, CLR_NONE},   // "BeatSupport"
+	{ 350,  8.0, CLR_RUSH},   // "EddieBomber"
+	{1050,  8.0, CLR_REGGAE}, // "ReggaeCall"
+	{ 350,  8.0, CLR_TANGO},  // "TangoSummon"
+	{ 245,  8.0, CLR_TREBLE}, // "TrebleSentry"
+
+	{ 350,  8.0, CLR_BASS},   // "BassUpgrade"
+	{ 350,  8.0, CLR_PROTO},  // "ProtoUpgrade"
+	{ 350,  8.0, CLR_RUSH},   // "AdaptorUpgrade"
+	{ 350,  8.0, CLR_NONE},   // "LaserBusterUpgrade"
+	{ 350,  8.0, CLR_NONE},   // "ArrowBusterUpgrade"
+	{ 350,  8.0, CLR_DUO},    // "DuoFistUpgrade"
+	{ 350,  8.0, CLR_TREBLE}, // "TrebleBoostUpgrade"
+	{ 350,  8.0, CLR_NONE},   // "MegaArmUpgrade"
+
+	{1050,  8.0, CLR_COPY},   // "ETank"
+	{1050,  8.0, CLR_COPY},   // "WTank"
+	{1050,  8.0, CLR_COPY},   // "MTank"
+	
+	{ 245,  8.0, CLR_ENERGYBALANCER} // "EnergyBalancer"
+};
+
+function int findPickup(str in)
+{
+	for(int i = 0; i < MAX_PICKUPS; i++) {
+		if(StrCmp(pickupStrings[i][0], in) == 0) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+function str getPickupName(int idx)
+{
+	return pickupStrings[idx][0];
+}
+
+function int getPickupRespawnTime(int idx)
+{
+	return pickupNums[idx][0];
+}
+
+function int getPickupGFXOffset(int idx)
+{
+	return pickupNums[idx][1];
+}
+
+function int getTranslationID(int idx)
+{
+	return pickupNums[idx][2];
+}
+
+function str getPickupCvar(int idx)
+{
+	return GetCvar(pickupStrings[idx][1]);
+}
+
+function str getPickupReplacement(int idx)
+{
+	return pickupStrings[idx][2];
+}
+
+function bool isPickupReplaceable(int idx)
+{
+	return !(StrCmp(getPickupName(idx), getPickupReplacement(idx)) == 0);
+}
+
+script "BTLMS_Init" OPEN CLIENTSIDE
+{
+	CreateTranslation(CLR_GRAYSCALE, 2:2=6:6,12:12=6:6,127:127=6:6,241:241=6:6,244:244=6:6,1:1=5:5,9:9=5:5,10:10=5:5,11:11=5:5,15:15=5:5,45:45=5:5,47:47=5:5,78:78=5:5,79:79=5:5,125:126=5:5,133:135=5:5,183:191=5:5,195:195=5:5,199:199=5:5,235:235=5:5,242:243=5:5,245:245=5:5,13:13=3:3,14:14=3:3,31:31=3:3,41:41=3:3,42:42=3:3,43:43=3:3,44:44=3:3,46:46=3:3,62:62=3:3,63:63=3:3,74:74=3:3,75:75=3:3,76:76=3:3,77:77=3:3,113:115=3:3,114:114=3:3,118:119=3:3,121:124=3:3,122:122=3:3,123:123=3:3,129:132=3:3,130:130=3:3,131:131=3:3,140:143=3:3,141:141=3:3,142:142=3:3,148:151=3:3,149:149=3:3,150:150=3:3,155:159=3:3,156:156=3:3,157:157=3:3,158:158=3:3,166:167=3:3,176:182=3:3,177:177=3:3,178:178=3:3,179:179=3:3,180:180=3:3,181:181=3:3,207:207=3:3,223:223=3:3,233:234=3:3,239:240=3:3,246:246=3:3,249:249=3:3,251:254=3:3,28:30=95:95,40:40=95:95,60:61=95:95,73:73=95:95,110:110=95:95,117:117=95:95,120:120=95:95,128:128=95:95,146:147=95:95,153:154=95:95,165:165=95:95,175:175=95:95,194:194=95:95,198:198=95:95,221:222=95:95,227:227=95:95,231:231=95:95,26:27=94:94,112:112=94:94,139:139=94:94,174:174=94:94,24:25=93:93,70:72=93:93,111:111=93:93,116:116=93:93,144:145=93:93,152:152=93:93,164:164=93:93,206:206=93:93,220:220=93:93,230:230=93:93,232:232=93:93,238:238=93:93,255:255=93:93,21:23=92:92,22:22=92:92,38:39=92:92,57:59=92:92,69:69=92:92,106:106=92:92,109:109=92:92,163:163=92:92,173:173=92:92,193:193=92:92,197:197=92:92,205:205=92:92,219:219=92:92,225:225=92:92,226:226=92:92,237:237=92:92,108:108=91:91,172:172=91:91,20:20=90:90,192:192=90:90,217:217=90:90,218:218=90:90,236:236=90:90,68:68=88:88,102:102=88:88,105:105=88:88,107:107=88:88,162:162=88:88,171:171=88:88,229:229=88:88,17:18=87:87,66:67=87:87,103:103=87:87,203:203=87:87,56:56=86:86,228:228=86:86,16:16=85:85,37:37=85:85,54:54=85:85,55:55=85:85,65:65=85:85,104:104=85:85,34:36=84:84,53:53=84:84,64:64=84:84,99:99=84:84,101:101=84:84,161:161=84:84,170:170=84:84,196:196=84:84,200:200=84:84,201:201=84:84,33:33=83:83,52:52=83:83,137:137=83:83,202:202=83:83,211:211=83:83,215:215=83:83,224:224=83:83,51:51=82:82,96:98=82:82,100:100=82:82,138:138=82:82,210:210=82:82,212:212=82:82,213:213=82:82,32:32=81:81,49:50=81:81,136:136=81:81,169:169=81:81,214:214=81:81);
+	CreateTranslation(CLR_HEALTH, 192:192=4:4, 198:198=215:215);
+	CreateTranslation(CLR_RUSH, 192:192=4:4, 198:198=42:42);
+	CreateTranslation(CLR_EXIT, 192:192=4:4);
+	CreateTranslation(CLR_REGGAE, 192:192=216:216, 198:198=0:0);
+	CreateTranslation(CLR_TANGO, 192:192=201:201, 198:198=128:128);
+	CreateTranslation(CLR_TREBLE, 192:192=62:62, 198:198=95:95);
+	CreateTranslation(CLR_BASS, 192:192=217:217, 198:198=95:95);
+	CreateTranslation(CLR_PROTO, 192:192=87:87, 198:198=42:42);
+	CreateTranslation(CLR_DUO, 192:192=220:220, 198:198=195:195);
+	CreateTranslation(CLR_ENERGYBALANCER, 192:192=4:4, 198:198=207:207);
+}
+
+function void disablePickup(void)
+{
+	SetActorProperty(0, APROP_Renderstyle, STYLE_None);
+	GiveInventory("BTLMSThruActors", 1);
+}
+
+script "BTLMS_Respawner" (int respawnFrames, int respawnOffset)
+{
+	delay(1);
+	
+	int item = findPickup(GetActorClass(0));
+	
+	if(item != -1) {
+		if(!getPickupCVar(item)) {
+			disablePickup();
+			terminate;
+		}
+		
+		if(!CheckFlag(0, "DROPPED"))
+		{
+			int x, y, z, tid;
+			
+			if(GetCvar("BTLMS_UseItemReplacements") && isPickupReplaceable(item)) {
+				disablePickup();
+				x = GetActorX(0);
+				y = GetActorY(0);
+				z = GetActorZ(0);
+				tid = UniqueTID(TID_START);
+				SpawnForced(getPickupReplacement(item), x, y, z, tid, 0);
+				SetActorProperty(tid, APROP_Dropped, false);
+				Thing_ChangeTID(tid, 0);
+				terminate;
+				
+			} else {
+				do
+				{
+					delay(1);
+				}
+				until(CheckFlag(0, "INVISIBLE"));
+				
+				int gfxz, respawnTicks, respawnRemainder, color;
+				str countDownActor = StrParam(s:"BTLMSItemRespawn", i:getPickupRespawnTime(item));
+				x = GetActorX(0);
+				y = GetActorY(0);
+				z = GetActorZ(0);
+				gfxz = z + 20.0 - getPickupGFXOffset(item);
+				color = getTranslationID(item);
+				
+				tid = UniqueTID(TID_START);
+				SpawnForced(countDownActor, x, y, z, tid, 0);
+				
+				if(color == CLR_COPY) {
+					Thing_ChangeTID(tid, 999);
+				} else {
+					Thing_SetTranslation(tid, color);
+					Thing_ChangeTID(tid, 0);
+				}
+				
+				tid = UniqueTID(TID_START);
+				SpawnForced(getPickupName(item), x, y, gfxz, tid, 0);
+				SetActivator(tid);
+				Thing_SetTranslation(0, CLR_GRAYSCALE);
+				SetActorProperty(0, APROP_Gravity, 0.0);
+				SetActorProperty(0, APROP_Renderstyle, STYLE_Translucent);
+				GiveInventory("BTLMSThruActors", 1);
+				GiveInventory("BTLMSScale1", 1);
+				delay(1);
+				SetActorProperty(0, APROP_Alpha, 0.8);
+				
+				delay(getPickupRespawnTime(item));
+				
+				Thing_Remove(0);
+			}
+		}
+	}
+}
+
+int callCount = 0;
+
+script "BTLMS_GetRespawnTime" (int which) CLIENTSIDE
+{
+	PrintBold(s:"Calling respawn check script: ", i:callCount++);
+	if(which == 0)
+	{
+		PrintBold(s:"RESPAWN ", i:CheckInventory("RespawnTimeCount"));
+		SetResultValue(CheckInventory("RespawnTimeCount"));
+		terminate;
+	}
+	else
+	{
+		PrintBold(s:"REMAIN ", i:CheckInventory("RespawnTimeCount"));
+		SetResultValue(CheckInventory("RespawnRemainderCount"));
+		terminate;
+	}
+}

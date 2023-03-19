@@ -1,0 +1,2 @@
+#include "decorate/itemrespawns.dec"
+#include "decorate/spawneffects.dec"

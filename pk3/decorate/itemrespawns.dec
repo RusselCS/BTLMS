@@ -1,0 +1,55 @@
+actor BTLMSItemRespawn
+{
+	+THRUACTORS
+	var int user_respawntime;
+	var int user_remainder;
+	scale 1.0
+	renderstyle "translucent"
+	alpha 0.8
+	mass 10
+	States
+	{
+	Spawn:
+		BTCD A 0
+		BTCD A 0 A_SetUserVar(user_respawntime, mass / RESPAWN_FRAMES)
+		BTCD A 0 A_SetUserVar(user_remainder, mass % RESPAWN_FRAMES)
+		BTCD A 1
+		BTCD ABCDEFGHIJKLMNOPQRSTUVWX 1 A_SetTics(user_respawntime)
+		BTCD Y 1 A_SetTics(user_remainder)
+		BTCD A 1
+		stop
+	}
+}
+
+actor BTLMSItemRespawn1050 : BTLMSItemRespawn { mass 1050 }
+actor BTLMSItemRespawn525  : BTLMSItemRespawn { mass  525 }
+actor BTLMSItemRespawn350  : BTLMSItemRespawn { mass  350 }
+actor BTLMSItemRespawn245  : BTLMSItemRespawn { mass  245 }
+actor BTLMSItemRespawn210  : BTLMSItemRespawn { mass  210 }
+
+actor BTLMSThruActors : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0
+		TNT1 A 0 A_ChangeFlag(THRUACTORS, true)
+		stop
+	}
+}
+
+actor BTLMSScale1 : CustomInventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(1.0, 1.0)
+		stop
+	}
+}
+
+actor BTLMSItemReplacer : RandomSpawner {}
+
+actor RespawnTimeCount : Once { inventory.maxamount 9999 }
+actor RespawnRemainderCount : Once { inventory.maxamount 9999 }

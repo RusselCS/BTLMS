@@ -1,0 +1,9 @@
+lastmanstanding
+{
+removeflag DONTSPAWNMAPTHINGS
+}
+
+TeamLMS
+{
+removeflag DONTSPAWNMAPTHINGS
+}

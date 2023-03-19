@@ -1,0 +1,423 @@
+#library "BTWEAPS"
+
+#include "zcommon.acs"
+#include "BTCONST.acs"
+#include "COMMFUNC.acs"
+
+// Weapon Icons
+// 0 - Weapon Name according to the Engine (Ex. RollingCutterWep)
+// 1 - Weapon Name according to the Player (Ex. Rolling Cutter)
+// 2 - LMS Slot
+// 3 - Icon
+str weapons_icons[MAX_WEAPONS_GLOBAL][4] = 
+{
+    {"ThunderBeamWep", "Thunder Beam", "SLOT_RANGED", "WEAPR0"},
+    {"FireStormWep", "Fire Storm", "SLOT_RANGED", "WEAPY0"},
+    {"MagnetMissileWep", "Magnet Missile", "SLOT_RANGED", "WEAPI0"},
+    {"GeminiLaserWep", "Gemini Laser", "SLOT_RANGED", "WEAPM0"},
+    {"SearchSnakeWep", "Search Snake", "SLOT_RANGED", "WEAPK0"},
+    {"SparkShockWep", "Spark Shock", "SLOT_RANGED", "WEA2G0"},
+    {"DustCrusherWep", "Dust Crusher", "SLOT_RANGED", "WEA2K0"},
+    {"DiveMissileWep", "Dive Missile", "SLOT_RANGED", "WEA2S0"},
+    {"GyroAttackWep", "Gyro Attack", "SLOT_RANGED", "WEA2I0"},
+    {"BlizzardAttackWep", "Blizzard Attack", "SLOT_RANGED", "WEAPW0"},
+    {"SilverTomahawkWep", "Silver Tomahawk", "SLOT_RANGED", "WEA2U0"},
+    {"FreezeCrackerWep", "Freeze Cracker", "SLOT_RANGED", "WEA3O0"},
+    {"NoiseCrushWep", "Noise Crush", "SLOT_RANGED", "WEA3J0"},
+    {"ThunderBoltWep", "Thunder Bolt", "SLOT_RANGED", "WEA3R0"},
+    {"HomingSniperWep", "Homing Sniper", "SLOT_RANGED", "WEA4H0"},
+    {"MegaBallWep", "Mega Ball", "SLOT_RANGED", "WEA4D0"},
+    {"IceWaveWep", "Ice Wave", "SLOT_RANGED", "WEA4A0"},
+    {"CopyVisionWep", "Copy Vision", "SLOT_RANGED", "COPYX0"},
+    {"LaserTridentWep", "Laser Trident", "SLOT_RANGED", "LTRIA0"},
+    {"ReboundStrikerWep", "Rebound Striker", "SLOT_RANGED", "STRIA0"},
+    {"GrabBusterWep", "Grab Buster", "SLOT_RANGED", "GRBUA0"},
+    {"DeepDiggerWep", "Deep Digger", "SLOT_RANGED", "DDIGA0"},
+    {"SparkChaserWep", "Spark Chaser", "SLOT_RANGED", "SCHSA0"},
+    
+    {"IceSlasherWep", "Ice Slasher", "SLOT_RAPID", "WEAPP0"},
+    {"MetalBladeWep", "Metal Blade", "SLOT_RAPID", "WEAPS0"},
+    {"QuickBoomerangWep", "Quick Boomerang", "SLOT_RAPID", "WEAPZ0"},
+    {"NeedleCannonWep", "Needle Cannon", "SLOT_RAPID", "WEAPL0"},
+    {"WaterWaveWep", "Water Wave", "SLOT_RAPID", "WEA2M0"},
+    {"YamatoSpearWep", "Yamato Spear", "SLOT_RAPID", "WEA2R0"},
+    {"WaterBalloonWep", "Water Balloon", "SLOT_RAPID", "WEA4I0"},
+    {"WaveBurnerWep", "Wave Burner", "SLOT_RAPID", "WABUX0"},
+    {"PlugBallWep", "Plug Ball", "SLOT_RAPID", "PBALA0"},
+    {"TripleBladeWep", "TripleBlade", "SLOT_RAPID", "TRIPA0"},
+    {"ScrewCrusherWep", "Screw Crusher", "SLOT_RAPID", "WEA3D0"},
+
+    {"RollingCutterWep", "Rolling Cutter", "SLOT_CLOSE", "WEA2F0"},
+    {"OilSliderWep", "Oil Slider", "SLOT_CLOSE", "WEA7J0"},
+    {"BubbleLeadWep", "Bubble Lead", "SLOT_CLOSE", "WEAPD0"},
+    {"AirShooterWep", "Air Shooter", "SLOT_CLOSE", "WEAPG0"},
+    {"TopSpinWep", "Top Spin", "SLOT_CLOSE", "WEAPJ0"},
+    {"ShadowBladeWep", "Shadow Blade", "SLOT_CLOSE", "WEAPA0"},
+    {"RingBoomerangWep", "Ring Boomerang", "SLOT_CLOSE", "WEA2H0"},
+    {"ChargeKickWep", "Charge Kick", "SLOT_CLOSE", "WEA2E0"},
+    {"PowerStoneWep", "Power Stone", "SLOT_CLOSE", "WEA2J0"},
+    {"FlameBlastWep", "Flame Blast", "SLOT_CLOSE", "WEA2P0"},
+    {"WildCoilWep", "Wild Coil", "SLOT_CLOSE", "WEA3K0"},
+    {"FlameSwordWep", "Flame Sword", "SLOT_CLOSE", "WEA4F0"},
+    {"ThunderClawWep", "Thunder Claw", "SLOT_CLOSE", "WEA4G0"},
+    {"TornadoHoldWep", "Tornado Hold", "SLOT_CLOSE", "WEA4C0"},
+    {"TenguBladeWep", "Tengu Blade", "SLOT_CLOSE", "TBLAX0"},
+    {"MagicCardWep", "Magic Card", "SLOT_CLOSE", "MCARX0"},
+    {"ConcreteShotWep", "Concrete Shot", "SLOT_CLOSE", "CONCA0"},
+    {"HornetChaserWep", "Hornet Chaser", "SLOT_CLOSE", "HCHSA0"},
+    {"MagmaBazookaWep", "Magma Bazooka", "SLOT_CLOSE", "MGM1A0"},
+    {"WheelCutterWep", "Wheel Cutter", "SLOT_CLOSE", "WHEEA0"},
+    {"ThunderWoolWep", "Thunder Wool", "SLOT_CLOSE", "THWOA0"},
+    {"ChillSpikeWep", "Chill Spike", "SLOT_CLOSE", "CHILA0"},
+    {"SaltWaterWep", "Salt Water", "SLOT_CLOSE", "SWATA0"},
+    {"ElectricShockWep", "Electric Shock", "SLOT_CLOSE", "ESPAA0"},
+    {"BreakDashWep", "Break Dash", "SLOT_CLOSE", "BDASA0"},
+    {"SakugarneWep", "Sakugarne", "SLOT_CLOSE", "WEA2Z0"},
+    {"WindStormWep", "Wind Storm", "SLOT_CLOSE", "WEA2V0"},
+    {"KnightCrushWep", "Knight Crush", "SLOT_CLOSE", "WEA2W0"},
+    {"SlashClawWep", "Slash Claw", "SLOT_CLOSE", "WEA3Q0"},
+
+    {"SuperArmWep", "Super Arm", "SLOT_POWER", "WEAPO0"},
+    {"HyperBombWep", "Hyper Bomb", "SLOT_POWER", "WEAPH0"},
+    {"AtomicFireWep", "Atomic Fire", "SLOT_POWER", "WEAPE0"},
+    {"CrashBombWep", "Crash Bomb", "SLOT_POWER", "WEA2C0"},
+    {"HardKnuckleWep", "Hard Knuckle", "SLOT_POWER", "WEAPT0"},
+    {"DrillBombWep", "Drill Bomb", "SLOT_POWER", "WEAPV0"},
+    {"PharaohShotWep", "Pharaoh Shot", "SLOT_POWER", "WEA2L0"},
+    {"NapalmBombWep", "Napalm Bomb", "SLOT_POWER", "WEAPC0"},
+    {"CrystalEyeWep", "Crystal Eye", "SLOT_POWER", "WEA2N0"},
+    {"DangerWrapWep", "Danger Wrap", "SLOT_POWER", "WEA3L0"},
+    {"FlashBombWep", "Flash Bomb", "SLOT_POWER", "WEA4B0"},
+    {"SpreadDrillWep", "Spread Drill", "SLOT_POWER", "SPREX0"},
+    {"RemoteMineWep", "Remote Mine", "SLOT_POWER", "REMIX0"},
+    {"SolarBlazeWep", "Solar Blaze", "SLOT_POWER", "SOLAA0"},
+    {"CommandoBombWep", "Commando Bomb", "SLOT_POWER", "COMMA0"},
+    {"BubbleBombWep", "Bubble Bomb", "SLOT_POWER", "BBOMA0"},
+    {"PhotonMissileWep", "Photon Missile", "SLOT_POWER", "PMISA0"},
+    {"BalladeCrackerWep", "Ballade Cracker", "SLOT_POWER", "WEA3C0"},
+
+    {"LeafShieldWep", "Leaf Shield", "SLOT_SHIELD", "WEAPF0"},
+    {"SkullBarrierWep", "Skull Barrier", "SLOT_SHIELD", "WEA2O0"},
+    {"StarCrashWep", "Star Crash", "SLOT_SHIELD", "WEA2X0"},
+    {"PlantBarrierWep", "Plant Barrier", "SLOT_SHIELD", "WEA2T0"},
+    {"ScorchWheelWep", "Scorch Wheel", "SLOT_SHIELD", "WEA3M0"},
+    {"JunkShieldWep", "Junk Shield", "SLOT_SHIELD", "WEA3N0"},
+    {"IceWallWep", "Ice Wall", "SLOT_SHIELD", "ICWLX0"},
+    {"JewelSatelliteWep", "Jewel Satellite", "SLOT_SHIELD", "JEWEA0"},
+    {"WaterShieldWep", "Water Shield", "SLOT_SHIELD", "WATSA0"},
+    {"BlackHoleWep", "Black Hole", "SLOT_SHIELD", "BHOLA0"},
+    {"MirrorBusterWep", "Mirror Buster", "SLOT_SHIELD", "WEA3H0"},
+
+    {"TimeSlowWep", "Time Slow", "SLOT_NONE", "SLOTX0"},
+    {"TimeStopperWep", "Time Stopper", "SLOT_NONE", "WEAPN0"},
+    {"RainFlushWep", "Rain Flush", "SLOT_NONE", "WEA2Y0"},
+    {"FlashStopperWep", "Flash Stopper", "SLOT_NONE", "WEA3E0"},
+    {"GravityHoldWep", "Gravity Hold", "SLOT_NONE", "WEA3F0"},
+    {"CentaurFlashWep", "Centaur Flash", "SLOT_NONE", "WEA3G0"},
+    {"AstroCrushWep", "Astro Crush", "SLOT_NONE", "WEA4E0"},
+    {"LightningBoltWep", "Lightning Bolt", "SLOT_NONE", "LIBOA0"},
+    {"TornadoBlowWep", "Tornado Blow", "SLOT_NONE", "TBLOA0"},
+    {"BlackHoleBombWep", "Black Hole Bomb", "SLOT_NONE", "BLKHA0"}
+};
+
+function int findWeapon(str in)
+{
+	for(int i = 0; i < MAX_WEAPONS_GLOBAL; i++) {
+		if(StrCmp(weapons_icons[i][0], in) == 0) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+function str getWeaponActor(int idx)
+{
+	return weapons_icons[idx][0];
+}
+
+function int getWeaponName(int idx)
+{
+	return weapons_icons[idx][1];
+}
+
+function int getWeaponSlot(int idx)
+{
+	return weapons_icons[idx][2];
+}
+
+function bool checkWeaponSlot(int idx, str slot)
+{
+	return StrCmp(getWeaponSlot(idx), slot) == 0;
+}
+
+function int getWeaponIcon(int idx)
+{
+	return weapons_icons[idx][3];
+}
+
+// LMS rework:
+// - count weapons by slot
+// - rng within that count
+// - pull the rth weapon from the slot rather than from the array itself
+//
+function int randomSlot(str slotName)
+{
+	int count = 0;
+	int i;
+	for(i = 0; i < MAX_WEAPONS_GLOBAL; i++) {
+		if(StrCmp(getWeaponSlot(i), slotName))
+			count++;
+	}
+	
+	if(count < 1)
+		return -1;
+	
+	int rng = random(0, count);
+	
+	for(i = 0; i < MAX_WEAPONS_GLOBAL; i++) {
+		if(StrCmp(getWeaponSlot(i), slotName))
+			rng--;
+		if(rng == 0)
+			return i;
+	}
+	
+	return -1;
+}
+
+// HUD Message Script:
+// - Push data using cvars
+// - Run Script that pulls that data and then waits for a signal to start
+// 
+int weapCount = 0;
+int weapIndex = 0;
+int weapHudMaxLength = 0;
+bool weapHudActivate = false;
+
+function void queueHUDWeapon(int slot)
+{
+	weapIndex = slot;
+	weapHudMaxLength = max(strlen(getWeaponName(slot)), weapHudMaxLength);
+}
+
+script "BTLMS_DrawWeapon" (int immediate) CLIENTSIDE
+{
+	if(!GetCvar("BTLMS_EnableHudMessages"))
+		terminate;
+	
+	int weap = weapIndex;
+	int msgIndex = weapCount;
+	weapCount++;
+	
+	while(!weapHudActivate) {
+		Delay(1);
+	}
+	
+	if(GetGameModeState() == GAMESTATE_COUNTDOWN || GetGameModeState() == GAMESTATE_WAITFORPLAYERS)
+	{
+		Delay(HDM_WEAP_START_DELAY);
+		Delay(msgIndex * HDM_WEAP_BETWEEN_DELAY);
+	}
+	
+	int yDiffs = msgIndex * HDM_WEAP_YOFFS_DIFF - weapCount / 2 * HDM_WEAP_YOFFS_DIFF;
+	
+	if(weapCount % 2 == 0) // If it's even, offset down slightly.
+		yDiffs += HDM_WEAP_YOFFS_DIFF / 2;
+	
+	int yOffsIcon = HDM_WEAP_YOFFS_ICON + yDiffs;
+	int yOffsName = HDM_WEAP_YOFFS_NAME + yDiffs;
+	
+	if(GetGameModeState() == GAMESTATE_COUNTDOWN || GetGameModeState() == GAMESTATE_WAITFORPLAYERS) {
+		int countdownTime = GetCVar("sv_lmscountdowntime")<<16;
+		int baseTime = FixedMul(weapHudMaxLength<<16, HDM_WEAP_TIME_NAME) + countdownTime + 2.0;
+		int iconTime = baseTime-HDM_WEAP_TIME_ICON;
+		int nameTime = baseTime-(StrLen(getWeaponName(weap))*HDM_WEAP_TIME_NAME);
+		
+		SetHudSize(600,380,0);
+		
+		SetFont(getWeaponIcon(weap));
+		HudMessage(s:"A"; HUDMSG_FADEINOUT, HDM_WEAP_START_ICON+msgIndex, 
+						CR_GREEN, HDM_WEAP_XOFFS_ICON, yOffsIcon, iconTime, HDM_WEAP_TIME_ICON, 1.0);
+		SetFont("smallfont");
+		HudMessage(s:getWeaponName(weap); HUDMSG_TYPEON, HDM_WEAP_START_NAME+msgIndex,
+						CR_GREEN, HDM_WEAP_XOFFS_NAME, yOffsName, nameTime, HDM_WEAP_TIME_NAME, 1.0);
+	} else {
+		int holdTime = 3.0;
+		int fadeTime = 0.5;
+		
+		SetHudSize(600,380,0);
+		
+		SetFont(getWeaponIcon(weap));
+		HudMessage(s:"A"; HUDMSG_FADEOUT, HDM_WEAP_START_ICON+msgIndex, 
+						CR_GREEN, HDM_WEAP_XOFFS_ICON, yOffsIcon, holdTime, iconTime, 1.0);
+		SetFont("smallfont");
+		HudMessage(s:getWeaponName(weap); HUDMSG_FADEOUT, HDM_WEAP_START_NAME+msgIndex,
+						CR_GREEN, HDM_WEAP_XOFFS_NAME, yOffsName, holdTime, iconTime, 1.0);
+	}
+}
+
+script "BTLMS_RefreshNumbers" (void)
+{
+	weapCount = 0;
+	weapIndex = 0;
+	weapHudMaxLength = 0;
+	weapHudActivate = false;
+}
+
+script "BTLMS_ShowYourWeapons" ENTER CLIENTSIDE
+{
+	if(ConsolePlayerNumber() != PlayerNumber())
+		terminate;
+	
+	delay(1);
+	if(GetGameModeState() == GAMESTATE_INPROGRESS)
+	{
+		Delay(34);
+	}
+	
+	for(int i = 0; i < MAX_WEAPONS_GLOBAL; i++)
+	{
+		if(CheckInventory(getWeaponActor(i)) > 0) {
+			queueHUDWeapon(i);
+			delay(1);
+			ACS_NamedExecuteAlways("BTLMS_DrawWeapon", 0);
+			delay(1);
+		}
+	}
+	
+	weapHudActivate = true;
+}
+
+// Weapon picker scripts
+//
+str SlotPickCvars[WEAP_CVARS] = {
+	"BTLMS_Track_RangedSlot",
+	"BTLMS_Track_RapidSlot",
+	"BTLMS_Track_CloseSlot",
+	"BTLMS_Track_PowerSlot",
+	"BTLMS_Track_ShieldSlot",
+	"BTLMS_Track_MiscSlot"
+};
+
+int SlotStartPositions[WEAP_CVARS+1] = {
+	0, 23, 34, 63, 81, 92, MAX_WEAPONS_GLOBAL
+};
+
+function int randomSlotFromMap(int start, int end)
+{
+	int mxv = countMapSlot(start, end);
+	
+	if(mxv == 0)
+		return -1;
+	
+	int rng = random(1, mxv);
+	
+	int counter = rng;
+	
+	int pos = start;
+	int ret = 0;
+	while(rng > 0) {
+		if(ThingCountName(getWeaponActor(pos), T_NONE) > 0) {
+			rng--;
+			ret = pos;
+		}
+		pos++;
+	}
+	
+	return ret;
+}
+
+function int countMapSlot(str start, int end)
+{
+	int count = 0;
+	for(int i = start; i < end; i++) {
+		if(ThingCountName(getWeaponActor(i), T_NONE) > 0) {
+			count++;
+		}
+	}
+	return count;
+}
+
+script "BTLMS_Weap_SetMapWeapons" OPEN
+{
+	delay(5);
+	
+	if(!GetCvar("BTLMS_StartWithMapWeapons"))
+	{
+		ACS_NamedExecute("BTLMS_Weap_ResetCVars", 0);
+		terminate;
+	}
+	
+	if(GetGameModeState() == GAMESTATE_COUNTDOWN || GetGameModeState() == GAMESTATE_WAITFORPLAYERS)
+	{
+		int limit = WEAP_CVARS;
+		
+		if(!GetCVar("BTLMS_StartWithAoEWeapons"))
+			limit--;
+		
+		for(int i = 0; i < limit; i++)
+		{
+			SetCvar(SlotPickCvars[i], randomSlotFromMap(SlotStartPositions[i], SlotStartPositions[i+1]));
+		}
+	}
+}
+
+script "BTLMS_Weap_ResetCVars" UNLOADING
+{
+	for(int i = 0; i < WEAP_CVARS; i++)
+	{
+		SetCvar(SlotPickCvars[i], -1);
+	}
+}
+
+script "BTLMS_Weap_GiveMapWeapons" ENTER
+{
+	if(!GetCvar("BTLMS_StartWithMapWeapons")) {
+		terminate;
+	}
+	if(GetCvar(SlotPickCvars[0]) == -1)
+	{
+		delay(10);
+	}
+	for(int i = 0; i < WEAP_CVARS; i++)
+	{
+		int cvar = GetCvar(SlotPickCvars[i]);
+		if(cvar != -1) {
+			GiveInventory(getWeaponActor(cvar), 1);
+		}
+	}
+}
+
+script "BTLMS_Weap_GiveMapWeapons_Respawn" RESPAWN
+{
+	ACS_NamedExecuteAlways("BTLMS_Weap_GiveMapWeapons", 0);
+}
+
+function void disableWeapon(void)
+{
+	SetActorProperty(0, APROP_Renderstyle, STYLE_None);
+	GiveInventory("BTLMSThruActors", 1);
+}
+
+script "BTLMS_Weap_HideMapWeapons" (void)
+{
+	delay(1);
+	if(!GetCVar("BTLMS_SpawnMapWeapons"))
+	{
+		if(GetCVar("BTLMS_SpawnAoEWeapons")) {
+			int weap = findWeapon(GetActorClass(0));
+			if(!checkWeaponSlot(weap, "SLOT_NONE")) {
+				disableWeapon();
+			}
+		}
+		else
+		{
+			disableWeapon();
+		}
+	}
+}
+
+
+
+
+
+

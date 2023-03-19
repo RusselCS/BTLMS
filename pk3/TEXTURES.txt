@@ -1,0 +1,20 @@
+//Team Busters
+//Light
+sprite LBSTA0, 116, 96 {Offset -184, -94  Patch BUSTB0, 0, 0 {Translation "192:192=205:205", "198:198=74:74"}}
+sprite LBSTB0, 124, 96 {Offset -184, -98  Patch BUSTC0, 0, 0 {Translation "192:192=205:205", "198:198=74:74"}}
+sprite LBSTC0, 128, 92 {Offset -188, -102 Patch BUSTD0, 0, 0 {Translation "192:192=205:205", "198:198=74:74"}}
+
+//Wily
+sprite WBSTA0, 116, 96 {Offset -184, -94  Patch BUSTB0, 0, 0 {Translation "192:192=171:171", "198:198=41:41"}}
+sprite WBSTB0, 124, 96 {Offset -184, -98  Patch BUSTC0, 0, 0 {Translation "192:192=171:171", "198:198=41:41"}}
+sprite WBSTC0, 128, 92 {Offset -188, -102 Patch BUSTD0, 0, 0 {Translation "192:192=171:171", "198:198=41:41"}}
+
+//Cossack
+sprite CBSTA0, 116, 96 {Offset -184, -94  Patch BUSTB0, 0, 0 {Translation "192:192=104:104", "198:198=128:128"}}
+sprite CBSTB0, 124, 96 {Offset -184, -98  Patch BUSTC0, 0, 0 {Translation "192:192=104:104", "198:198=128:128"}}
+sprite CBSTC0, 128, 92 {Offset -188, -102 Patch BUSTD0, 0, 0 {Translation "192:192=104:104", "198:198=128:128"}}
+
+//King
+sprite KBSTA0, 116, 96 {Offset -184, -94  Patch BUSTB0, 0, 0 {Translation "192:192=229:229", "198:198=232:232"}}
+sprite KBSTB0, 124, 96 {Offset -184, -98  Patch BUSTC0, 0, 0 {Translation "192:192=229:229", "198:198=232:232"}}
+sprite KBSTC0, 128, 92 {Offset -188, -102 Patch BUSTD0, 0, 0 {Translation "192:192=229:229", "198:198=232:232"}}

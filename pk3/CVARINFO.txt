@@ -1,0 +1,36 @@
+server noarchive int BTLMS_InvulnTime = 3;
+server noarchive bool BTLMS_InvulnBlast = true;
+
+server noarchive bool BTLMS_OverrideTeamStarts = true;
+
+// Toggle whether or not to spawn map weapons
+// 
+server noarchive bool BTLMS_SpawnMapWeapons = false;
+server noarchive bool BTLMS_SpawnAoEWeapons = false;
+
+// Toggle whether or not to spawn map pickups
+// 
+server noarchive bool BTLMS_SpawnSmallHP = false;
+server noarchive bool BTLMS_SpawnBigHP = true;
+server noarchive bool BTLMS_SpawnSmallWE = true;
+server noarchive bool BTLMS_SpawnBigWE = true;
+server noarchive bool BTLMS_SpawnMegaHP = true;
+server noarchive bool BTLMS_SpawnMegaWE = true;
+server noarchive bool BTLMS_SpawnItems = false;
+server noarchive bool BTLMS_UseItemReplacements = true;
+
+server noarchive bool BTLMS_EnableHudMessages = true;
+
+// Toggle whether or not to start with map weapons
+// 
+server noarchive bool BTLMS_StartWithMapWeapons = true;
+server noarchive bool BTLMS_StartWithAoEWeapons = false;
+
+// === DO NOT MODIFY, THESE ARE USED FOR SEMI-PERSISTENT STORAGE OF INFORMATION ===
+//
+server noarchive int BTLMS_Track_RangedSlot = -1;
+server noarchive int BTLMS_Track_RapidSlot = -1;
+server noarchive int BTLMS_Track_CloseSlot = -1;
+server noarchive int BTLMS_Track_PowerSlot = -1;
+server noarchive int BTLMS_Track_ShieldSlot = -1;
+server noarchive int BTLMS_Track_MiscSlot = -1;

@@ -1,0 +1,45 @@
+// [BTLMS] Constants used by the below scripts
+const int RESPAWN_FRAMES = 24;
+const int RESPAWN_OFFSET = 0;
+
+// Modders can replace these to allow these actors to execute scripts/functions without mass replicating inventory code
+
+actor MM8BDMWepSpawnFunc : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteAlways("BTLMS_Weap_HideMapWeapons", 0)
+stop
+}
+}
+
+actor MM8BDMItemSpawnFunc : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteAlways("BTLMS_Respawner", 0, RESPAWN_FRAMES, RESPAWN_OFFSET)
+stop
+}
+}
+
+actor PartyBallSpawnFunc : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 Thing_Remove(0)
+stop
+}
+}
+
+actor MM8BDMFlagSpawnFunc : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0
+stop
+}
+}
